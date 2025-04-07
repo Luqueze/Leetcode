@@ -3,7 +3,7 @@ class Solution(object):
         if len(s) <= 1:
             return len(s)  
         
-        count = 0
+        contador = 0
         has_odd = False  
 
         while len(s) > 0:
@@ -11,7 +11,7 @@ class Solution(object):
             ocurrencies = s.count(first_char)
 
             # if there are more than one appearence of a number it will count it
-            count += 2 * (ocurrencies // 2)
+            contador += 2 * (ocurrencies // 2)
 
             # verifies if a char appear odd time
             if ocurrencies % 2 == 1:
@@ -22,6 +22,6 @@ class Solution(object):
 
         # count + 1 if the size of the string is even
         if has_odd:
-            count += 1
+            contador += 1
 
-        return count
+        return contador
