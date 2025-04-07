@@ -1,13 +1,25 @@
 class Solution(object):
     def longestPalindrome(self, s):
         if len(s) <= 1:
-            return s
+            return 1
         
-        biggest = 0
-        for i in range(len(s)):
-            for j in range(i+1, len(s)+1):
-                substring = s[i:j]
-                if substring == substring[::-1] and len(substring) > biggest:
-                    biggest = len(substring)
-        return biggest           
+        count = 0
+
+        while len(s) > 0:
+            first_char = s[0]
+            ocurrencies = s.count(first_char)
+
+            if ocurrencies % 2 == 0:
+                count += 2 * (ocurrencies // 2)
+
+            s = s.replace(first_char,'')
+
+        if len(s) > 0:
+            count += 1
+
+        if count > 2 and count % 2 == 0:  # Palíndromo é par e maior que 2
+            count += 1  # Adiciona o caractere ímpar ao centro
+
+        return count
+    
         
