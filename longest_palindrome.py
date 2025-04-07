@@ -1,25 +1,27 @@
 class Solution(object):
     def longestPalindrome(self, s):
         if len(s) <= 1:
-            return 1
+            return len(s)  
         
         count = 0
+        has_odd = False  
 
         while len(s) > 0:
-            first_char = s[0]
+            first_char = s[0]  
             ocurrencies = s.count(first_char)
 
-            if ocurrencies % 2 == 0:
-                count += 2 * (ocurrencies // 2)
+            # if there are more than one appearence of a number it will count it
+            count += 2 * (ocurrencies // 2)
 
-            s = s.replace(first_char,'')
+            # verifies if a char appear odd time
+            if ocurrencies % 2 == 1:
+                has_odd = True
 
-        if len(s) > 0:
+            # delete the chars of the string
+            s = s.replace(first_char, '')
+
+        # count + 1 if the size of the string is even
+        if has_odd:
             count += 1
 
-        if count > 2 and count % 2 == 0:  # Palíndromo é par e maior que 2
-            count += 1  # Adiciona o caractere ímpar ao centro
-
         return count
-    
-        
